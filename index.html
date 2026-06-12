@@ -12,7 +12,7 @@
     --paper:#ECE0C2; --paper2:#E0CFA6; --paper3:#D4BF92;
     --ink:#2B2014; --ink-soft:rgba(43,32,20,.62); --ink-faint:rgba(43,32,20,.34);
     --seal:#9E2B25; --brass:#A98B4F;
-    --b0:#8AA579; --b1:#D8B65C; --b2:#C9824C; --b3:#AE5A4C; --b4:#86566B; --b5:#5C4533;
+    --b0:#C3CDA3; --b1:#A6BA8D; --b2:#8AA579; --b3:#D8B65C; --b4:#C9824C; --b5:#AE5A4C; --b6:#86566B; --b7:#5C4533;
     --serif:'EB Garamond', Georgia, 'Iowan Old Style', 'Times New Roman', serif;
     --fell:'IM Fell English', Georgia, serif;
     --fellsc:'IM Fell English SC', 'EB Garamond', Georgia, serif;
@@ -173,7 +173,7 @@
     <div class="cartouche">
       <div class="tag">Isochronic Passage Chart</div>
       <h2>Time required to reach any part of the world</h2>
-      <div class="from" id="fromLine">FROM IRVING, TEXAS</div>
+      <div class="from" id="fromLine">FROM DALLAS, TEXAS</div>
       <div class="note" id="gateLine"></div>
     </div>
     <div class="frame">
@@ -182,12 +182,14 @@
         <div class="overlay" id="overlay">
           <div class="legend">
             <div class="lt">Passage Time</div>
-            <div class="row"><span class="sw" style="background:var(--b0)"></span>within 8 hours</div>
-            <div class="row"><span class="sw" style="background:var(--b1)"></span>8 – 16 hours</div>
-            <div class="row"><span class="sw" style="background:var(--b2)"></span>16 – 24 hours <i>· one day</i></div>
-            <div class="row"><span class="sw" style="background:var(--b3)"></span>24 – 36 hours</div>
-            <div class="row"><span class="sw" style="background:var(--b4)"></span>36 – 48 hours</div>
-            <div class="row"><span class="sw" style="background:var(--b5)"></span>more than two days</div>
+            <div class="row"><span class="sw" style="background:var(--b0)"></span>within 1 hour</div>
+            <div class="row"><span class="sw" style="background:var(--b1)"></span>1 – 4 hours</div>
+            <div class="row"><span class="sw" style="background:var(--b2)"></span>4 – 8 hours</div>
+            <div class="row"><span class="sw" style="background:var(--b3)"></span>8 – 16 hours</div>
+            <div class="row"><span class="sw" style="background:var(--b4)"></span>16 – 24 hours <i>· one day</i></div>
+            <div class="row"><span class="sw" style="background:var(--b5)"></span>24 – 36 hours</div>
+            <div class="row"><span class="sw" style="background:var(--b6)"></span>36 – 48 hours</div>
+            <div class="row"><span class="sw" style="background:var(--b7)"></span>more than two days</div>
           </div>
           <div class="seanote"><b>A Note on the Seas</b>
             the tints are laid upon the land only; the traveller is presumed to cross the waters by scheduled air service, as his forebear did by packet-boat</div>
@@ -314,9 +316,9 @@ const AIRPORTS = {
 // Researched nonstops; hours are typical scheduled outbound block times.
 const ORIGINS = {
   irving: {
-    name:'Irving, Texas', short:'IRVING', lon:-96.95, lat:32.84, country:'US',
-    gateway:'DFW', gatewayName:'Dallas/Fort Worth Intl (DFW)', access:0.35,
-    accessNote:'DFW aerodrome lies at the city\u2019s western edge \u2014 ten miles by road',
+    name:'Dallas, Texas', short:'DALLAS', lon:-96.80, lat:32.78, country:'US',
+    gateway:'DFW', gatewayName:'Dallas/Fort Worth Intl (DFW)', access:0.5,
+    accessNote:'DFW aerodrome lies some twenty miles northwest of downtown \u2014 half an hour by road or by the Silver Line rail',
     nonstops:{
       // domestic
       LAX:3.4, SFO:3.9, SEA:4.4, DEN:2.1, ORD:2.4, JFK:3.6, EWR:3.6, BOS:4.0,
@@ -357,6 +359,38 @@ const ORIGINS = {
       HNL:10.9, ANC:7.6, AKL:17.5
     },
     blurb:'Singapore Airlines\u2019 JFK\u2013Singapore nonstop, near 19 hours aloft, is the longest passenger flight in the world.'
+  },
+  paris: {
+    name:'Paris', short:'PARIS', lon:2.35, lat:48.86, country:'FR',
+    gateway:'CDG', gatewayName:'Charles de Gaulle (CDG)', access:0.75,
+    accessNote:'the RER carries the traveller from the city to Roissy in some forty-five minutes; the TGV web radiates to the whole Continent',
+    nonstops:{
+      // north america
+      JFK:8.4, EWR:8.4, BOS:7.8, IAD:8.5, ORD:9.3, ATL:9.4, MIA:9.8, IAH:10.6,
+      DFW:10.5, DEN:10.2, LAX:11.6, SFO:11.4, SEA:10.3, MSP:9.4,
+      YYZ:8.0, YUL:7.5, YVR:9.9, MEX:11.7, CUN:10.9,
+      // latin america (SCL 14h30 is Air France's longest \u2014 verified)
+      PTY:11.3, BOG:11.2, LIM:12.7, SCL:14.5, EZE:13.8, GRU:11.8, GIG:11.6,
+      HAV:10.5, SJO:11.3, SJU:8.6,
+      // europe
+      LHR:1.3, AMS:1.3, BRU:0.9, FRA:1.3, MUC:1.6, BER:1.8, ZRH:1.2, VIE:2.0,
+      PRG:1.7, WAW:2.2, BUD:2.2, OTP:3.0, ATH:3.3, FCO:2.1, MXP:1.5, MAD:2.1,
+      BCN:1.8, LIS:2.6, DUB:1.9, MAN:1.6, CPH:1.9, ARN:2.6, OSL:2.3, HEL:3.0,
+      KEF:3.6, IST:3.4,
+      // middle east
+      TLV:4.6, AMM:4.5, CAI:4.5, DXB:6.8, AUH:7.0, DOH:6.5, RUH:6.2, JED:6.0,
+      // africa (Air France's web is densest here)
+      CMN:3.1, ALG:2.2, DSS:5.9, ABJ:6.5, ACC:6.4, LOS:6.5, BKO:5.8, NDJ:5.9,
+      FIH:8.1, LAD:8.2, NBO:8.5, ADD:7.0, KGL:8.3, JNB:10.8, CPT:11.6,
+      MRU:11.5, TNR:10.5, LPA:4.3,
+      // asia (long routings around closed Russian airspace)
+      HND:14.2, ICN:13.8, PEK:10.0, PVG:11.5, CAN:11.8, HKG:12.9, TPE:13.5,
+      SIN:13.0, BKK:11.4, KUL:12.9, SGN:12.0, HAN:11.2, DEL:8.3, BOM:8.8,
+      BLR:9.6, MLE:10.4, TAS:6.5,
+      // oceania (Qantas CDG\u2013Perth nonstop, 16\u00bd hours \u2014 verified)
+      PER:16.5
+    },
+    blurb:'Air France\u2019s web covers Africa more densely than any carrier; Santiago de Chile, fourteen and a half hours nonstop, is the longest reach from Roissy, while Qantas runs Paris\u2013Perth in sixteen and a half.'
   },
   london: {
     name:'London', short:'LONDON', lon:-0.13, lat:51.51, country:'GB',
@@ -551,24 +585,27 @@ if(typeof module!=='undefined') module.exports={AIRPORTS,ORIGINS,buildAir,reckon
 /* ================= chart rendering & interaction ================= */
 const W=1500, H=600, LAT_TOP=84, LAT_BOT=-60, LAT_SPAN=LAT_TOP-LAT_BOT;
 const cv=document.getElementById('chart'), ctx=cv.getContext('2d');
-const BANDS=[8,16,24,36,48];
-const BAND_RGB=[[138,165,121],[216,182,92],[201,130,76],[174,90,76],[134,86,107],[92,69,51]];
+const BANDS=[1,4,8,16,24,36,48];
+const BAND_RGB=[[195,205,163],[166,186,141],[138,165,121],[216,182,92],[201,130,76],[174,90,76],[134,86,107],[92,69,51]];
 const SEA=[200,203,178], SEA_DEEP=[188,193,168];
 
 const X=lon=>(lon+180)/360*W, Y=lat=>(LAT_TOP-lat)/LAT_SPAN*H;
 const lonAt=x=>x/W*360-180, latAt=y=>LAT_TOP-y/LAT_SPAN*H*0+ (LAT_TOP - (y/H)*LAT_SPAN);
 
-const CITIES=[
-  ['Reykjavík',-21.9,64.15],['Anchorage',-149.9,61.22],['Vancouver',-123.12,49.28],
-  ['San Francisco',-122.42,37.77],['New York',-74.0,40.71],['Mexico City',-99.13,19.43],
-  ['Bogotá',-74.07,4.61],['Lima',-77.04,-12.05],['Santiago',-70.65,-33.46],
-  ['Buenos Aires',-58.38,-34.6],['São Paulo',-46.63,-23.55],['Honolulu',-157.86,21.31],
-  ['London',-0.13,51.51],['Paris',2.35,48.86],['Cairo',31.24,30.05],['Lagos',3.39,6.45],
-  ['Nairobi',36.82,-1.29],['Johannesburg',28.05,-26.2],['Istanbul',28.98,41.01],
-  ['Moscow',37.62,55.76],['Dubai',55.27,25.2],['Mumbai',72.88,19.08],['Delhi',77.21,28.61],
-  ['Singapore',103.85,1.29],['Jakarta',106.85,-6.21],['Hong Kong',114.17,22.32],
-  ['Shanghai',121.47,31.23],['Tokyo',139.77,35.68],['Sydney',151.21,-33.87],
-  ['Perth',115.86,-31.95],['Auckland',174.76,-36.85],['Kathmandu',85.32,27.72]
+const CITIES=[ // [name, lon, lat, population of the agglomeration in millions]
+  ['Reykjavík',-21.9,64.15,0.25],['Anchorage',-149.9,61.22,0.3],['Vancouver',-123.12,49.28,2.6],
+  ['San Francisco',-122.42,37.77,4.6],['New York',-74.0,40.71,19.0],['Mexico City',-99.13,19.43,22.2],
+  ['Bogotá',-74.07,4.61,11.3],['Lima',-77.04,-12.05,11.2],['Santiago',-70.65,-33.46,6.9],
+  ['Buenos Aires',-58.38,-34.6,15.5],['São Paulo',-46.63,-23.55,22.6],['Honolulu',-157.86,21.31,1.0],
+  ['London',-0.13,51.51,9.7],['Paris',2.35,48.86,11.3],['Madrid',-3.70,40.42,6.8],
+  ['Warsaw',21.01,52.23,1.8],['Kyiv',30.52,50.45,2.9],
+  ['Cairo',31.24,30.05,22.1],['Lagos',3.39,6.45,16.0],['Kinshasa',15.31,-4.32,17.0],
+  ['Addis Ababa',38.75,9.02,5.5],['Nairobi',36.82,-1.29,5.5],['Johannesburg',28.05,-26.2,6.5],
+  ['Istanbul',28.98,41.01,16.0],['Moscow',37.62,55.76,12.6],['Dubai',55.27,25.2,3.6],
+  ['Mumbai',72.88,19.08,21.3],['Delhi',77.21,28.61,33.0],
+  ['Singapore',103.85,1.29,6.0],['Jakarta',106.85,-6.21,11.2],['Hong Kong',114.17,22.32,7.5],
+  ['Shanghai',121.47,31.23,29.2],['Tokyo',139.77,35.68,37.2],['Sydney',151.21,-33.87,5.3],
+  ['Perth',115.86,-31.95,2.1],['Auckland',174.76,-36.85,1.7],['Kathmandu',85.32,27.72,1.6]
 ];
 
 /* ---- land mask ---- */
@@ -613,7 +650,7 @@ function noiseAt(x,y){ // cheap deterministic grain
 }
 function bandIndex(t){
   for(let i=0;i<BANDS.length;i++) if(t<=BANDS[i]) return i;
-  return 5;
+  return 7;
 }
 function renderField(done){
   const token=++renderToken;
@@ -728,13 +765,20 @@ function fmtLong(h){
 function placeCities(){
   const box=document.getElementById('cities'); box.innerHTML='';
   const O=ORIGINS[curOrigin];
-  for(const [nm,lon,lat] of CITIES){
+  for(const [nm,lon,lat,pop] of CITIES){
     if(Math.abs(lon-O.lon)<3.4 && Math.abs(lat-O.lat)<3.4) continue;
     const r=reckon(curOrigin,AIR,lon,lat);
     const d=document.createElement('div');
     d.className='city';
     d.style.left=(X(lon)/W*100)+'%'; d.style.top=(Y(lat)/H*100)+'%';
-    d.innerHTML='<div class="dot"></div><div class="nm">'+nm+'</div><div class="tm">'+fmtShort(r.t)+'</div>';
+    // typography in proportion to the population, as a Victorian engraver would grade his lettering
+    const s=Math.min(13.5, Math.max(7.5, 7.5+1.65*Math.log(pop||1)));      // name size, px
+    const dot=(3.5+0.35*(s-7.5)).toFixed(1), tm=(8.6+0.28*(s-7.5)).toFixed(1);
+    const big=s>=12 ? 'font-weight:600;letter-spacing:.2em;' : '';
+    d.style.zIndex=Math.round(s);
+    d.innerHTML='<div class="dot" style="width:'+dot+'px;height:'+dot+'px"></div>'
+      +'<div class="nm" style="font-size:'+s.toFixed(1)+'px;'+big+'">'+nm+'</div>'
+      +'<div class="tm" style="font-size:'+tm+'px">'+fmtShort(r.t)+'</div>';
     box.appendChild(d);
   }
   const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -767,7 +811,7 @@ function nearestCity(lon,lat){
 }
 function bandName(t){
   const i=bandIndex(t);
-  return ['within eight hours','within sixteen hours','within the day','the second day','the second day, late','beyond two days'][i];
+  return ['within the hour','within four hours','within eight hours','within sixteen hours','within the day','the second day','the second day, late','beyond two days'][i];
 }
 function legHTML(r){
   const O=ORIGINS[curOrigin];
