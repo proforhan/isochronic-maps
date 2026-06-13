@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An Isochronic Passage Chart — after Galton, 1881</title>
+<title>An Isochronic Map — after Galton, 1881</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -113,7 +113,7 @@
 
   /* reckoning ledger */
   .ledger{
-    position:absolute; width:268px; padding:11px 14px 12px; pointer-events:none; display:none; z-index:5;
+    position:absolute; width:268px; padding:11px 14px 12px; pointer-events:none; display:none; z-index:9999;
     background:linear-gradient(180deg, rgba(240,229,201,.985), rgba(228,212,172,.985));
     border:1px solid var(--ink); box-shadow:0 0 0 3px rgba(240,229,201,.85), 0 0 0 4px var(--ink), 0 14px 30px rgba(30,20,8,.45);
   }
@@ -142,10 +142,12 @@
 
   /* below-deck notes */
   .notes{
-    max-width:1280px; margin:26px auto 0; display:grid; gap:26px;
-    grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));
+    max-width:1180px; margin:26px auto 0; display:grid; gap:26px 34px;
+    grid-template-columns:repeat(3, 1fr);
     color:#CBB78C; font-size:14.5px; line-height:1.62;
   }
+  @media (max-width:920px){ .notes{grid-template-columns:repeat(2, 1fr)} }
+  @media (max-width:600px){ .notes{grid-template-columns:1fr} }
   .notes h3{
     font-family:var(--fellsc); font-weight:400; font-size:13px; letter-spacing:.34em; text-transform:uppercase;
     color:#E5D3A6; border-bottom:1px solid rgba(201,182,139,.35); padding-bottom:7px; margin-bottom:10px;
@@ -161,8 +163,7 @@
 <body>
 
 <header class="masthead">
-  <div class="over">After Francis Galton’s chart of 1881 · reckoned anew for the age of the jet</div>
-  <h1>An Isochronic Passage Chart</h1>
+  <h1>An Isochronic Map</h1>
   <div class="sub">shewing the time required, door to door, to reach any part of the world — by road, rail &amp; air</div>
 </header>
 
@@ -208,16 +209,12 @@
 <section class="notes">
   <div>
     <h3>What is an Isochronic Map</h3>
-    <p>An isochronic map colours the world by how long it takes to get there rather than how far away it lies. Sir Francis Galton drew the first in 1881, shading the globe in bands of equal travel time from London. Every place sharing a tint on this chart is reachable in the same span of hours, door to door — so the map measures the world in time, as the traveller truly meets it.</p>
+    <p>Traditional maps show geography, but they do not show accessibility. An isochronic map colours the world by how long it takes to get there rather than how far away it lies. Sir Francis Galton drew the first in 1881, shading the globe in bands of equal travel time from London. Every place sharing a tint on this chart is reachable in the same span of hours, door to door — so the map measures the world in time, as the traveller truly meets it.</p>
   </div>
   <div>
     <h3>Method of Reckoning</h3>
     <p>Every point on the chart is reckoned <i>door to door</i>: the journey to the aerodrome, two hours for check-in and security on international service (an hour and a half domestic), the scheduled flight, an hour or so to disembark and clear customs, and onward travel by road or rail at the prevailing speed of the country — swift upon the Shinkansen and the German autobahn, slow indeed across the Sahara, the Amazon and the Siberian taiga.</p>
     <p>Where no nonstop service exists, the reckoning routes the traveller through the most favourable hub with a single connexion of 2¼ hours. Travel is presumed continuous, as Galton presumed it; no allowance is made for sleep, which the modern traveller forgoes at altitude regardless.</p>
-  </div>
-  <div>
-    <h3>The Route Book</h3>
-    <div id="routeBook"></div>
   </div>
   <div>
     <h3>Sources &amp; Caveats</h3>
@@ -606,9 +603,13 @@ const CITIES=[ // [name, lon, lat, population of the agglomeration in millions]
   ['Cairo',31.24,30.05,22.1],['Lagos',3.39,6.45,16.0],['Kinshasa',15.31,-4.32,17.0],
   ['Addis Ababa',38.75,9.02,5.5],['Nairobi',36.82,-1.29,5.5],['Johannesburg',28.05,-26.2,6.5],
   ['Istanbul',28.98,41.01,16.0],['Moscow',37.62,55.76,12.6],['Dubai',55.27,25.2,3.6],
+  ['Riyadh',46.72,24.63,7.7],['Tehran',51.39,35.69,9.5],['Baghdad',44.36,33.31,8.1],
+  ['Karachi',67.01,24.86,17.2],
   ['Mumbai',72.88,19.08,21.3],['Delhi',77.21,28.61,33.0],
-  ['Singapore',103.85,1.29,6.0],['Jakarta',106.85,-6.21,11.2],['Hong Kong',114.17,22.32,7.5],
-  ['Shanghai',121.47,31.23,29.2],['Tokyo',139.77,35.68,37.2],['Sydney',151.21,-33.87,5.3],
+  ['Singapore',103.85,1.29,6.0],['Jakarta',106.85,-6.21,11.2],['Bangkok',100.50,13.75,11.0],
+  ['Manila',120.98,14.60,14.4],['Hong Kong',114.17,21.55,7.5],['Guangzhou',113.26,23.13,18.7],
+  ['Shanghai',121.47,31.23,29.2],['Beijing',116.41,39.90,21.9],['Seoul',126.98,37.57,25.6],
+  ['Tokyo',139.77,35.68,37.2],['Sydney',151.21,-33.87,5.3],
   ['Perth',115.86,-31.95,2.1],['Auckland',174.76,-36.85,1.7],['Kathmandu',85.32,27.72,1.6]
 ];
 
@@ -779,7 +780,7 @@ function placeCities(){
     const s=Math.min(13.5, Math.max(7.5, 7.5+1.65*Math.log(pop||1)));      // name size, px
     const dot=(3.5+0.35*(s-7.5)).toFixed(1), tm=(8.6+0.28*(s-7.5)).toFixed(1);
     const big=s>=12 ? 'font-weight:600;letter-spacing:.2em;' : '';
-    d.style.zIndex=Math.round(s);
+    d.style.zIndex=Math.round(s); // city labels sit in the 7–14 range; the ledger overrides at 9999
     d.innerHTML='<div class="dot" style="width:'+dot+'px;height:'+dot+'px"></div>'
       +'<div class="nm" style="font-size:'+s.toFixed(1)+'px;'+big+'">'+nm+'</div>'
       +'<div class="tm" style="font-size:'+tm+'px">'+fmtShort(r.t)+'</div>';
@@ -795,6 +796,7 @@ function placeCities(){
 }
 function fillRouteBook(){
   const el=document.getElementById('routeBook');
+  if(!el) return;
   el.innerHTML=Object.keys(ORIGINS).map(k=>{
     const O=ORIGINS[k];
     return '<p><i>'+O.name+'</i> — via '+O.gatewayName+'; '+O.accessNote+'. '+O.blurb+'</p>';
